@@ -1,6 +1,5 @@
 from flask import Blueprint, request, render_template
 from deep_translator import GoogleTranslator
-
 from models.language_model import LanguageModel
 
 
