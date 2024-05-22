@@ -10,8 +10,8 @@ class LanguageModel(AbstractModel):
 
     def to_dict(self):
         return {
-            "name": self.data["name"],
-            "acronym": self.data["acronym"],
+            "name": self.data.get("name"),
+            "acronym": self.data.get("acronym"),
         }
 
     @classmethod
