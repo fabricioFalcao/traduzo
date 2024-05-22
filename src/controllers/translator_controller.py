@@ -3,12 +3,12 @@ from deep_translator import GoogleTranslator
 from models.language_model import LanguageModel
 
 
-translator_controller = Blueprint("translator_controller", __name__)
+translator_bp = Blueprint("translator_controller", __name__)
 
 languages = LanguageModel.list_dicts()
 
 
-@translator_controller.route("/", methods=["GET"])
+@translator_bp.route("/", methods=["GET"])
 def translator_view():
 
     return render_template(
@@ -21,7 +21,7 @@ def translator_view():
     )
 
 
-@translator_controller.route("/", methods=["POST"])
+@translator_bp.route("/", methods=["POST"])
 def translate():
 
     text_to_translate = request.form["text-to-translate"]
@@ -41,7 +41,7 @@ def translate():
     )
 
 
-@translator_controller.route("/reverse", methods=["POST"])
+@translator_bp.route("/reverse", methods=["POST"])
 def reverse_translate():
 
     text_to_translate = request.form["text-to-translate"]
