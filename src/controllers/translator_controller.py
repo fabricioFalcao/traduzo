@@ -2,18 +2,15 @@ from flask import Blueprint, request, render_template
 from deep_translator import GoogleTranslator
 from models.language_model import LanguageModel
 
-
-translator_bp = Blueprint("translator_controller", __name__)
-
-languages = LanguageModel.list_dicts()
+translator_controller = Blueprint("translator_controller", __name__)
 
 
-@translator_bp.route("/", methods=["GET"])
+@translator_controller.route("/", methods=["GET"])
 def translator_view():
 
     return render_template(
         "index.html",
-        languages=languages,
+        languages=LanguageModel.list_dicts(),
         text_to_translate="O que deseja traduzir?",
         translate_from="pt",
         translate_to="en",
@@ -21,7 +18,7 @@ def translator_view():
     )
 
 
-@translator_bp.route("/", methods=["POST"])
+@translator_controller.route("/", methods=["POST"])
 def translate():
 
     text_to_translate = request.form["text-to-translate"]
@@ -33,7 +30,7 @@ def translate():
 
     return render_template(
         "index.html",
-        languages=languages,
+        languages=LanguageModel.list_dicts(),
         text_to_translate=text_to_translate,
         translate_from=translate_from,
         translate_to=translate_to,
@@ -41,7 +38,7 @@ def translate():
     )
 
 
-@translator_bp.route("/reverse", methods=["POST"])
+@translator_controller.route("/reverse", methods=["POST"])
 def reverse_translate():
 
     text_to_translate = request.form["text-to-translate"]
@@ -53,7 +50,7 @@ def reverse_translate():
 
     return render_template(
         "index.html",
-        languages=languages,
+        languages=LanguageModel.list_dicts(),
         text_to_translate=translated,
         translate_from=translate_to,
         translate_to=translate_from,
