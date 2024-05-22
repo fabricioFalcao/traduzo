@@ -1,6 +1,7 @@
 from src.models.history_model import HistoryModel
 from src.models.user_model import UserModel
-from src.database.db import db
+
+# from src.database.db import db
 import pytest
 
 
